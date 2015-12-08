@@ -46,8 +46,10 @@ ext {
 }
 
 // 设置 maven 库地址
-repositories {  
-    maven {url 'http://maven.oschina.net/content/groups/public/'}	// 国内库地址
+repositories {
+	mavenCentral() // 中央库
+
+	maven {url 'http://maven.oschina.net/content/groups/public/'}	// 国内库地址
 	maven {url 'http://download.java.net/maven/2/'}
 	maven {url 'http://repo.spring.io/release/'}
 	maven {url 'http://repo.maven.apache.org/maven2'}
@@ -56,7 +58,8 @@ repositories {
 	maven {url 'https://app.camunda.com/nexus/content/groups/public'}
 	maven {url 'http://git.oschina.net/thinkgem/repos/raw/master'}
 	maven {url 'https://raw.github.com/thinkgem/repository/master'}
-    mavenCentral() // 中央库
+	maven {url 'http://central.maven.org/maven2/'}
+    
 }
 
 
@@ -79,7 +82,7 @@ dependencies {
 		"com.alibaba:druid:${druidVersion}",
 		//jdbc driver
 		"mysql:mysql-connector-java:${mysqlDriverVersion}",	//mysql 驱动
-		"com.oracle:ojdbc14:${oracleDriverVersion}",
+		//"com.oracle:ojdbc14:${oracleDriverVersion}",
 		
 		//WEB
 		"opensymphony:sitemesh:${sitemeshVersion}",
