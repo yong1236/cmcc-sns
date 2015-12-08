@@ -1,0 +1,9 @@
+net.parim.sns.common.config
+net.parim.sns.common.persistence
+net.parim.sns.common.persistence.annotation
+net.parim.sns.common.security
+net.parim.sns.common.security.shiro
+net.parim.sns.common.test
+net.parim.sns.common.utils
+net.parim.sns.modules.test.dao
+net.parim.sns.modules.test.entity
