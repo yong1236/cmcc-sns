@@ -6,14 +6,14 @@
 		select id, name, intro description, logo_path thumbnail
 		from sns_group g
 		where g.type='P'
-		and rownum &lt; #{size}
+		<!-- and rownum &lt; #{size} -->
 	</select>
 	
 	<select id="getDepartmentalList" resultType="net.parim.sns.modules.prefecture.entity.Prefecture">
 		select id, name, intro description, logo_path thumbnail
 		from sns_group g
 		where g.type='P'
-		and rownum &lt; #{size}
+		<!-- and rownum &lt; #{size} -->
 	</select>
 	
 </mapper>

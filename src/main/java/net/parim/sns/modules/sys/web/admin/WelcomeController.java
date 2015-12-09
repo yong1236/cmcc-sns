@@ -5,7 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping(value="/admin")
+@RequestMapping(value="/${adminPath}")
 public class WelcomeController {
 
 	@RequestMapping(value={"", "/", "/index"})

@@ -49,4 +49,28 @@ public class Global {
 	public static String getUrlSuffix(){
 		return getConfig("web.view.suffix");
 	}
+	
+	/**
+	 * 前台主题名称
+	 * @return
+	 */
+	public static String getTheme(){
+		return getConfig("site.theme");
+	}
+	
+	/**
+	 * 前台主题模板存放基础路径
+	 * @return
+	 */
+	public static String getThemeBasePath(){
+		return getConfig("site.theme.basePath");
+	}
+	
+	/**
+	 * 前台主题模板路径
+	 * @return
+	 */
+	public static String getThemePath(){
+		return getThemeBasePath() + getTheme();
+	}
 }

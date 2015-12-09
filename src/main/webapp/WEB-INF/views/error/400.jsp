@@ -15,10 +15,10 @@ if (ex != null) {
 			sb.append("☆" + e.getDefaultMessage() + "(" + e.getField() + ")\n");
 		}
 		LoggerFactory.getLogger("400.jsp").warn(ex.getMessage(), ex);
-	}else if (ex instanceof ConstraintViolationException) {
-		for (ConstraintViolation<?> v : ((ConstraintViolationException)ex).getConstraintViolations()) {
-			sb.append("☆" + v.getMessage() + "(" + v.getPropertyPath() + ")\n");
-		}
+	//}else if (ex instanceof ConstraintViolationException) {
+		//for (ConstraintViolation<?> v : ((ConstraintViolationException)ex).getConstraintViolations()) {
+			//sb.append("☆" + v.getMessage() + "(" + v.getPropertyPath() + ")\n");
+		//}
 	} else {
 		//sb.append(Exceptions.getStackTraceAsString(ex));
 		sb.append("☆" + ex.getMessage());
@@ -35,8 +35,8 @@ if (Servlets.isAjaxRequest(request)) {
 // 输出异常信息页面
 else {
 %>
-<%@page import="javax.validation.ConstraintViolation"%>
-<%@page import="javax.validation.ConstraintViolationException"%>
+<%--@page import="javax.validation.ConstraintViolation"--%>
+<%--@page import="javax.validation.ConstraintViolationException"--%>
 <%@page import="org.springframework.validation.BindException"%>
 <%@page import="org.springframework.validation.ObjectError"%>
 <%@page import="org.springframework.validation.FieldError"%>
