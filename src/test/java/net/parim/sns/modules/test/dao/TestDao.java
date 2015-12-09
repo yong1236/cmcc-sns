@@ -1,10 +1,10 @@
 package net.parim.sns.modules.test.dao;
 
 import net.parim.sns.common.persistence.BaseDao;
-import net.parim.sns.common.persistence.annotation.MyBatisDao;
+import net.parim.sns.common.persistence.annotation.MyBatisReponsitory;
 import net.parim.sns.modules.test.entity.Test;
 
-@MyBatisDao
+@MyBatisReponsitory
 public interface TestDao extends BaseDao {
 	
 	/**

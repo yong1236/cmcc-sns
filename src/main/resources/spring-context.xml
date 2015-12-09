@@ -38,7 +38,7 @@
     <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
         <property name="basePackage" value="net.parim.sns"/>
-        <property name="annotationClass" value="net.parim.sns.common.persistence.annotation.MyBatisDao"/>
+        <property name="annotationClass" value="net.parim.sns.common.persistence.annotation.MyBatisReponsitory"/>
     </bean>
     
     <!-- 定义事务 -->

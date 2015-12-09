@@ -3,10 +3,10 @@ package net.parim.sns.modules.prefecture.dao;
 import java.util.List;
 
 import net.parim.sns.common.persistence.BaseDao;
-import net.parim.sns.common.persistence.annotation.MyBatisDao;
+import net.parim.sns.common.persistence.annotation.MyBatisReponsitory;
 import net.parim.sns.modules.prefecture.entity.Prefecture;
 
-@MyBatisDao
+@MyBatisReponsitory
 public interface PrefectureDao extends BaseDao {
 	/**
 	 * 精选专题

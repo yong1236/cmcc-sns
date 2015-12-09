@@ -26,6 +26,6 @@ public class PrefectureController {
 		model.addAttribute("choicenessPrefectures", choicenessPrefectures);
 		model.addAttribute("departmentaPrefectures", departmentaPrefectures);
 		
-		return "/front/prefecture/index";
+		return "/prefecture/index";
 	}
 }

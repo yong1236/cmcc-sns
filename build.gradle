@@ -47,7 +47,7 @@ ext {
 
 // 设置 maven 库地址
 repositories {
-	mavenCentral() // 中央库
+	//mavenCentral() // 中央库
 
 	maven {url 'http://maven.oschina.net/content/groups/public/'}	// 国内库地址
 	maven {url 'http://download.java.net/maven/2/'}
@@ -60,6 +60,7 @@ repositories {
 	maven {url 'https://raw.github.com/thinkgem/repository/master'}
 	maven {url 'http://central.maven.org/maven2/'}
     
+    mavenCentral() // 中央库一般访问很慢， 但上面的其他代理库，代码在某些环境下可能有问题（"hr"标签没有闭合标签"</hr>"）。现在只能通过切换库的优先级，来解决此问题。更好的解决方案寻求中。
 }
 
 
@@ -157,8 +158,10 @@ dependencies {
 	providedCompile "javax.servlet.jsp:jsp-api:2.2.1-b03"  
     providedCompile "javax.servlet:servlet-api:2.5" // 编译期
     
-	testCompile "org.springframework:spring-test:${springVersion}"
-	testCompile "junit:junit:4.11" 
+	//testCompile "org.springframework:spring-test:${springVersion}"
+	//testCompile "junit:junit:4.11" 
+	compile "org.springframework:spring-test:${springVersion}"
+	compile "junit:junit:4.11"
 }
 
 // 设置 Project Facets
