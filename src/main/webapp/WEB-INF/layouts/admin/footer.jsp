@@ -1,4 +1,2 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
-<footer>
-	<div>copyright: parim.net 2015 - 2016</div>
-</footer>
+<div class="footer"><p>This is footer<small>&copy; 2014</small></p></div>

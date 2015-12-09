@@ -6,11 +6,13 @@
 <head>
 	<title><sitemesh:title/></title>
 	<%@include file="/WEB-INF/views/include/head.jsp" %>
+	<%--@include file="/WEB-INF/views/${site.theme.basePath}${site.theme}layouts/head-meta.jsp" --%>
+	<%@include file="/WEB-INF/views/themes/default/layouts/head-meta.jsp" %>
 	<sitemesh:head/>
 </head>
 <body>
-	<%@include file="/WEB-INF/layouts/front/header.jsp" %>
+	<%@include file="/WEB-INF/views/themes/default/layouts/header.jsp" %>
 	<sitemesh:body/>
-	<%@include file="/WEB-INF/layouts/front/footer.jsp" %>
+	<%@include file="/WEB-INF/views/themes/default/layouts/footer.jsp" %>
 </body>
 </html>

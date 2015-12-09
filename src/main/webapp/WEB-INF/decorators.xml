@@ -14,15 +14,20 @@
 		<pattern>/front/peoplecenter/showSigleMessage/*</pattern>
 	</excludes>
 	
-	<decorator name="admin" page="admin/default.jsp">
+	<!-- <decorator name="admin" page="admin/default.jsp">
 		<pattern>/admin</pattern>
 		<pattern>/admin/</pattern>
 		<pattern>/admin/index</pattern>
 	</decorator>
 	<decorator name="admin-product" page="admin/product.jsp">
 		<pattern>/admin/*</pattern>
+	</decorator> -->
+	<decorator name="admin" page="admin/default.jsp">
+		<pattern>/admin</pattern>
+		<pattern>/admin/*</pattern>
 	</decorator>
 	
+	<!-- //TODO: 解决动态加载配置的主题的问题 -->
 	<decorator name="front" page="front/default.jsp">
 		<pattern>/front/*</pattern>
 		<pattern>/*</pattern>
