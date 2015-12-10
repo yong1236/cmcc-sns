@@ -100,10 +100,10 @@ dependencies {
 		"org.apache.shiro:shiro-cas:${shiroVersion}",
 		"org.apache.shiro:shiro-web:${shiroVersion}",
 		"org.apache.shiro:shiro-ehcache:${shiroVersion}",
-		
+
 		
 		//日志记录 LOGGING
-		//compile 'log4j:log4j:1.2.14'
+		'log4j:log4j:1.2.14'
 		"org.slf4j:slf4j-api:${slf4jVersion}",
 		"org.slf4j:slf4j-log4j12:${slf4jVersion}",
 		"org.slf4j:jcl-over-slf4j:${slf4jVersion}",	//common-logging 实际调用slf4j
