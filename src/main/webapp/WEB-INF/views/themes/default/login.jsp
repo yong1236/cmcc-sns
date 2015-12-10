@@ -9,6 +9,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="${ctx }">Sign Up</a>
+<h1>Sign Up</h1>
+<form action="${ctx }/login" method="post">
+	<label for="username">Username:</label>
+	<input type="text" id="username" name="username" placeholder="Username">
+	<br>
+	<label for="password">Password:</label>
+	<input type="password" id="password" name="password" placeholder="Password">
+	<br>
+	<input type="submit" value="Sign UP">
+</form>
 </body>
 </html>

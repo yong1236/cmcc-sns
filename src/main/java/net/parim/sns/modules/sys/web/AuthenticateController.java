@@ -11,9 +11,23 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class AuthenticateController {
 
-	@RequestMapping(value={"/login", "${adminPath}/login"})
+	@RequestMapping(value={"/login", "${adminPath}/login"}, method=RequestMethod.GET)
 	@UseTheme(value=false)
-	public String index(Model model){
+	public String login(Model model){
+		
+		return Global.getThemePath()+"login";
+	}
+	
+	@RequestMapping(value={"/login", "${adminPath}/login"}, method=RequestMethod.POST)
+	@UseTheme(value=false)
+	public String loginFailed(Model model){
+		
+		return Global.getThemePath()+"login";
+	}
+	
+	@RequestMapping(value={"/logout", "${adminPath}/logout"}, method=RequestMethod.GET)
+	@UseTheme(value=false)
+	public String logout(Model model){
 		
 		return Global.getThemePath()+"login";
 	}

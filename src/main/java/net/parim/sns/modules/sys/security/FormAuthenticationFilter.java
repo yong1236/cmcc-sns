@@ -100,7 +100,7 @@ public class FormAuthenticationFilter extends org.apache.shiro.web.filter.authc.
 		if (!"XMLHttpRequest".equalsIgnoreCase(httpServletRequest
 				.getHeader("X-Requested-With"))) {// 不是ajax请求
 			
-			UserUtils user = (UserUtils) subject.getPrincipal();//获取封装的用户
+			//UserUtils user = (UserUtils) subject.getPrincipal();//获取封装的用户
 			
 			//User currentUser = SpringContextHolder.getBean(AccountService.class).findUserByLoginName(user.username);
 			//subject.getSession().setAttribute(Constants.CURRENT_USER, currentUser);

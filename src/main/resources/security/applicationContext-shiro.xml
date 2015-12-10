@@ -18,7 +18,9 @@
 				/userfiles/** = anon
 				${adminPath}/cas = cas
 				${adminPath}/login = authc
+				/login = authc
 				${adminPath}/logout = logout
+				/logout = logout
 				${adminPath}/** = user
 			</value>
 		</constructor-arg>
@@ -28,7 +30,7 @@
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 		<property name="securityManager" ref="securityManager" /><!-- 
 		<property name="loginUrl" value="${cas.server.url}?service=${cas.project.url}${adminPath}/cas" /> -->
-		<property name="loginUrl" value="${adminPath}/login" />
+		<property name="loginUrl" value="/login" />
 		<property name="successUrl" value="${adminPath}?login" />
 		<property name="filters">
             <map>
