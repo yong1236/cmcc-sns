@@ -15,6 +15,7 @@ targetCompatibility = 1.7   // 设置 JDK 版本
 ext {
 	//main version setting
     springVersion = '4.0.8.RELEASE'
+    springDataVersion = ''
 	mybatisVersion = '3.2.8'
 	mybatisSpringVersion = '1.2.2'
 	druidVersion = '1.0.11'
@@ -74,6 +75,7 @@ dependencies {
 		"org.springframework:spring-orm:${springVersion}",	//ORM 对象关系映射
 		"org.springframework:spring-oxm:${springVersion}",
 		"org.springframework:spring-context-support:${springVersion}",
+		'org.springframework.data:spring-data-commons:1.11.1.RELEASE', //spring data core
 		
 		//PERSISTENCE
 		//MyBatis
@@ -88,6 +90,7 @@ dependencies {
 		//WEB
 		"opensymphony:sitemesh:${sitemeshVersion}",
 		"taglibs:standard:1.1.2",
+		"javax.servlet:jstl:1.2", //'javax.servlet.jsp.jstl:jstl:1.2',
 		
 		//CACHE
 		"net.sf.ehcache:ehcache-core:${ehcacheVersion}",
@@ -103,7 +106,7 @@ dependencies {
 
 		
 		//日志记录 LOGGING
-		'log4j:log4j:1.2.14'
+		'log4j:log4j:1.2.14',
 		"org.slf4j:slf4j-api:${slf4jVersion}",
 		"org.slf4j:slf4j-log4j12:${slf4jVersion}",
 		"org.slf4j:jcl-over-slf4j:${slf4jVersion}",	//common-logging 实际调用slf4j

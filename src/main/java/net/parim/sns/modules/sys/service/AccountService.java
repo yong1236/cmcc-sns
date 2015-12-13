@@ -18,6 +18,10 @@ public class AccountService {
 		return userRepository.findOne(id);
 	}
 	
+	public User findUserByUsername(String username){
+		return userRepository.findUserByUsername(username);
+	}
+	
 	public User checkUser(String username, String password) 
 			throws UnknownAccountException, IncorrectCredentialsException{
 		User user = checkUserExist(username);

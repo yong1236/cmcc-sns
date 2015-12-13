@@ -45,8 +45,9 @@
 	</typeAliases> -->
 	
 	<!-- 插件配置 -->
-	<!-- <plugins>
-		<plugin interceptor="net.parim.sns.common.persistence.interceptor.PaginationInterceptor" />
-    </plugins> -->
+	<plugins>
+		<!-- <plugin interceptor="net.parim.sns.common.persistence.interceptor.PaginationInterceptor" /> -->
+    	<plugin interceptor="net.parim.sns.common.persistence.mybatis.paginate.OffsetLimitInterceptor"></plugin>
+    </plugins>
 	
 </configuration>

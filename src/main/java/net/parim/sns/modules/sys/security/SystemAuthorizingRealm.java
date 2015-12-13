@@ -3,18 +3,22 @@
  */
 package net.parim.sns.modules.sys.security;
 
+import java.security.Principal;
+
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import net.parim.sns.modules.sys.exception.IncorrectCredentialsException;
-import net.parim.sns.modules.sys.exception.UnknownAccountException;
+import net.parim.sns.modules.sys.entity.User;
 import net.parim.sns.modules.sys.service.AccountService;
 
 /**
@@ -26,17 +30,10 @@ import net.parim.sns.modules.sys.service.AccountService;
 //@DependsOn({"userDao","roleDao","menuDao"})
 public class SystemAuthorizingRealm extends AuthorizingRealm {
 	
+	private Logger logger = LoggerFactory.getLogger(getClass());
+	
 	@Autowired
-	AccountService accountService;
-
-	/**
-	 * 认证回调函数, 登录时调用
-	 */
-	@Override
-	protected AuthorizationInfo doGetAuthorizationInfo(
-			PrincipalCollection paramPrincipalCollection) {
-		return null;
-	}
+	private AccountService accountService;
 
 	/**
 	 * 授权查询回调函数, 进行鉴权但缓存中无用户的授权信息时调用
@@ -45,17 +42,37 @@ public class SystemAuthorizingRealm extends AuthorizingRealm {
 	protected AuthenticationInfo doGetAuthenticationInfo(
 			AuthenticationToken paramAuthenticationToken)
 			throws AuthenticationException {
-		String username = (String)paramAuthenticationToken.getPrincipal();
-		String password = new String((char[])paramAuthenticationToken.getCredentials());
-		try {
-			accountService.checkUser(username, password);
-		} catch (UnknownAccountException e) {
-			throw new org.apache.shiro.authc.UnknownAccountException();
-		} catch (IncorrectCredentialsException e) {
-			throw new org.apache.shiro.authc.IncorrectCredentialsException();
+		UsernamePasswordToken authcToken = (UsernamePasswordToken)paramAuthenticationToken;
+		
+		if(logger.isDebugEnabled()){
+			logger.debug("Login submit, active session size: {}, username: {}", 0, authcToken.getUsername());
 		}
-		return new SimpleAuthenticationInfo(username, password, SystemAuthorizingRealm.class.getName());
+		
+		// 校验用户名密码
+		User user = accountService.findUserByUsername(authcToken.getUsername());
+		if (user != null) {
+			return new SimpleAuthenticationInfo(authcToken.getUsername(), user.getPassword(), getName());
+		} else {
+			return null;
+		}
 	}
 
-	
+	/**
+	 * 认证回调函数, 登录时调用
+	 */
+	@Override
+	protected AuthorizationInfo doGetAuthorizationInfo(
+			PrincipalCollection paramPrincipalCollection) {
+		String username = (String) getAvailablePrincipal(paramPrincipalCollection);
+		
+		User user = accountService.findUserByUsername(username);
+		if(user != null){
+			SimpleAuthorizationInfo authInfo = new SimpleAuthorizationInfo();
+			authInfo.addStringPermission("user");
+			authInfo.addRole("supperAdmin");
+			return authInfo;
+		}
+		
+		return null;
+	}
 }
