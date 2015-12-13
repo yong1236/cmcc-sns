@@ -88,6 +88,12 @@
 					<tr>
 						<td colspan="6">
 						<tags:pagination page="${prefectures}" paginationSize="10"/>
+						<button class="btn btn-success">新增</button>
+						<button class="btn btn-primary">发布</button>
+						<button class="btn btn-warning">取消发布</button>
+						<button class="btn btn-primary">设置精选</button>
+						<button class="btn btn-warning">取消精选</button>
+						<button class="btn btn-danger">删除</button>
 						</td>
 					</tr>
 				</tfoot>

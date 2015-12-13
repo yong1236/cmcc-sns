@@ -10,6 +10,7 @@
     
     <link rel="stylesheet" href="${ctx }/static/admin/styles/main.css">
     <link rel="stylesheet" href="${ctx }/static/admin/styles/console.css">
+    <link rel="stylesheet" href="${ctx }/static/admin/styles/admin.css">
     <script src="${ctx }/static/admin/scripts/vendor/modernizr.js"></script>
     
     <script src="${ctx }/static/admin/scripts/vendor.js"></script>

@@ -13,7 +13,7 @@ request.setAttribute("current", current);
 request.setAttribute("begin", begin);
 request.setAttribute("end", end);
 %>
-<nav>
+<nav class="pull-right" style="display:inline-block;">
 	<ul class="pagination pull-right" style="margin:0px;">
 		 <% if (page.hasPrevious()){%>
                	<li><a href="?page=0&sortType=${sortType}&${searchParams}">&lt;&lt;</a></li>
