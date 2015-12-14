@@ -24,11 +24,16 @@
 	</select>
 	
 	<select id="findAll" parameterType="net.parim.sns.modules.prefecture.entity.Prefecture" resultType="net.parim.sns.modules.prefecture.entity.Prefecture">
-		select ${id} id,
+		select id,
 			name,
 			intro as "description",
 			logo_path as "thumbnail"
 		from sns_group g
+		<where>
+			<if test="name != null and name != ''">
+				name like concat('%',#{name},'%')
+			</if>
+		</where>
 	</select>
 
 	<select id="getChoicenessList" resultType="net.parim.sns.modules.prefecture.entity.Prefecture">

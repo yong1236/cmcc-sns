@@ -35,8 +35,8 @@
     <div class="row">
     	<div class="col-sm-12">
     		<ul class="nav nav-tabs">
-    			<li class="active"><a href="?all">全部(89)</a></li>
-    			<li><a href="?all">已发布(40)</a></li>
+    			<li class="${empty tabActive or tabActive eq 'all' ? 'active' : '' }"><a href="${ctxAdmin }/prefecture/">全部(89)</a></li>
+    			<li class="${tabActive eq 'published' ? 'active' : '' }"><a href="${ctxAdmin }/prefecture/published">已发布(40)</a></li>
     			<li><a href="?all">精选(15)</a></li>
     			<li><a href="?all">待审核(7)</a></li>
     		</ul>
@@ -44,10 +44,10 @@
     </div>
     <div class="row">	
     	<div class="col-sm-12">
-    		<form class="form-inline" action="" style="margin: 15px 0;">
+    		<form id="searchForm" class="form-inline" action="" style="margin: 15px 0;">
     			<div class="form-group">
 				    <label for="">名称</label>
-				    <input type="text" class="form-control" id="" placeholder="专区名称">
+				    <input type="text" class="form-control" name="name" value="${prefecture.name }" placeholder="专区名称">
 				</div>
 				<div class="form-group">
 				    <label for="" class="sr-only">分类</label>
@@ -87,7 +87,7 @@
 				<tfoot>
 					<tr>
 						<td colspan="6">
-						<tags:pagination page="${prefectures}" paginationSize="10"/>
+						<page:formpage page="${prefectures}"/>
 						<button class="btn btn-success">新增</button>
 						<button class="btn btn-primary">发布</button>
 						<button class="btn btn-warning">取消发布</button>

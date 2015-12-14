@@ -55,10 +55,10 @@ public class OffsetLimitInterceptor implements Interceptor {
 
 	@Override
 	public Object intercept(Invocation invocation) throws Throwable {
-		final Executor executor = (Executor) invocation.getTarget();
+		//final Executor executor = (Executor) invocation.getTarget();
 		final Object[] queryArgs = invocation.getArgs();
 		final MappedStatement mappedStatement = (MappedStatement) queryArgs[MAPPED_STATEMENT_INDEX];
-		final RowBounds rowBounds = (RowBounds) queryArgs[ROWBOUNDS_INDEX];
+		//final RowBounds rowBounds = (RowBounds) queryArgs[ROWBOUNDS_INDEX];
 		final Object parameter;
 		final Pageable pageable;
 
@@ -67,15 +67,15 @@ public class OffsetLimitInterceptor implements Interceptor {
 			return invocation.proceed();
 		}
 
-		int size = ((HashMap) prefParameter).size()/2;
-		Object lastParam = ((HashMap) prefParameter).get("" + (size - 1));
+		int size = ((HashMap<?, ?>) prefParameter).size()/2;
+		Object lastParam = ((HashMap<?, ?>) prefParameter).get("" + (size - 1));
 		if (null != lastParam && lastParam instanceof Pageable) {
 			if (size == 1) {
 				queryArgs[PARAMETER_INDEX] = null;
 				parameter = null;
 			} else if (size == 2) {
-				queryArgs[PARAMETER_INDEX] = ((HashMap) prefParameter).get("0");
-				parameter = ((HashMap) prefParameter).get("0");
+				queryArgs[PARAMETER_INDEX] = ((HashMap<?, ?>) prefParameter).get("0");
+				parameter = ((HashMap<?, ?>) prefParameter).get("0");
 			} else {
 				// size大于2的时候，默认用map不变
 				parameter = prefParameter;
@@ -121,7 +121,8 @@ public class OffsetLimitInterceptor implements Interceptor {
 
 			invocation.getArgs()[0] = newMs;
 			//org.springframework.data.domain.Page page2;
-			PageImpl pageImpl = new PageImpl((List)invocation.proceed(), pageable, (long)page.getCount());
+			@SuppressWarnings("unchecked")
+			PageImpl<?> pageImpl = new PageImpl<Object>((List<Object>)invocation.proceed(), pageable, (long)page.getCount());
 			return pageImpl;
 		}
 		

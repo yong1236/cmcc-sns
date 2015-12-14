@@ -1,7 +1,5 @@
 package net.parim.sns.modules.prefecture.web.admin;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,12 +19,24 @@ public class PrefectureManagementController {
 	PrefectureService prefectureService;
 
 	@RequestMapping(value="/")
-	public String index(@PageableDefault Pageable pageable, Model model){
-		Prefecture prefecture = new Prefecture();
-		prefecture.setId(100L);
+	public String index(Prefecture prefecture, 
+			@PageableDefault Pageable pageable, Model model){
 		
 		Page<Prefecture> prefectures = prefectureService.findAll(prefecture, pageable);
 		model.addAttribute("prefectures", prefectures);
+		model.addAttribute("prefecture", prefecture);
+		return "/admin/prefecture/prefectureList";
+	}
+	
+	@RequestMapping(value="/published")
+	public String published(Prefecture prefecture, 
+			@PageableDefault Pageable pageable, Model model){
+		prefecture.setId(12L);
+		
+		Page<Prefecture> prefectures = prefectureService.findAll(prefecture, pageable);
+		model.addAttribute("prefectures", prefectures);
+		model.addAttribute("prefecture", prefecture);
+		model.addAttribute("tabActive", "published");
 		return "/admin/prefecture/prefectureList";
 	}
 	

@@ -51,7 +51,8 @@
 .table tfoot tr td {
 	padding: 12px 8px;
 	border-bottom: 1px solid #e1e6eb;
-	vertical-align: middle
+	vertical-align: middle;
+	background-color: #F5F6FA;
 }
 
 .table .text-right .dropdown-menu {
