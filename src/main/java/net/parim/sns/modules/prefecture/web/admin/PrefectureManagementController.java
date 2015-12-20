@@ -22,7 +22,8 @@ public class PrefectureManagementController {
 	
 	@Autowired
 	PrefectureService prefectureService;
-
+	
+	
 	@RequestMapping(value="/")
 	public String index(Prefecture prefecture, 
 			@PageableDefault Pageable pageable, Model model){

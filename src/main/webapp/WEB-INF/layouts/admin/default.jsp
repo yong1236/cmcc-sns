@@ -16,6 +16,8 @@
     <script src="${ctx }/static/admin/scripts/vendor.js"></script>
     <script src="${ctx }/static/admin/scripts/plugins.js"></script>
     
+    <script src="${ctxStatic }/venders/jquery/jquery-1.8.3.min.js" type="text/javascript"></script>
+    
 	<sitemesh:head/>
 </head>
 <body>
@@ -56,7 +58,7 @@
 	
     <script src="${ctx }/static/admin/scripts/main.js"></script>
     
-    <script src="${ctxStatic }/venders/jquery/jquery-1.8.3.min.js" type="text/javascript"></script>
+    
     <link href="${ctxStatic }/venders/jquery-jbox/2.3/Skins/Bootstrap/jbox.min.css" rel="stylesheet" />
 	<script src="${ctxStatic }/venders/jquery-jbox/2.3/jquery.jBox-2.3.js" type="text/javascript"></script>
 </body>
