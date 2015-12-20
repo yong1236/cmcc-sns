@@ -15,6 +15,19 @@ public class PrefectureService {
 	@Autowired
 	private PrefectureRepository prefectureRepository;
 	
+	public Prefecture findOne(Long id){
+		return prefectureRepository.findOne(id);
+	}
+	
+	public void save(Prefecture prefecture){
+		if(prefecture.getId() == null || prefecture.getId() <=0){
+			prefectureRepository.insert(prefecture);
+		}else{
+			prefectureRepository.update(prefecture);
+		}
+		
+	}
+	
 	public List<Prefecture> findAll(Prefecture prefecture){
 		return prefectureRepository.findAll();
 	}
