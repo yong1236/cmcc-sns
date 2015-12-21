@@ -21,7 +21,7 @@
               <h4>${not empty prefecture.id?'修改':'添加'}</h4>
             </div>
             <div class="pull-right">
-              <a class="btn btn-default" href="${ctxAdmin }/sys/menu/">
+              <a class="btn btn-default" href="${ctxAdmin }/prefecture/">
                 <i class="glyphicon glyphicon-refresh"></i>
                 返回专区列表
               </a>
@@ -33,13 +33,30 @@
     
     <div class="row">
     	<div class="col-sm-12">
-    		<form:form id="inputForm" modelAttribute="prefecture" action="${ctxAdmin }/sys/prefecture/save" method="post" class="form-horizontal">
+    		<form:form id="inputForm" modelAttribute="prefecture" action="${ctxAdmin }/prefecture/save" method="post" class="form-horizontal">
 				<form:hidden path="id"/>
     			<div class="form-group">
-					<label class="col-sm-4 control-label"><font color="red">*</font> 名称:</label>
-					<div class="col-sm-4 controls">
-						<form:input path="name" htmlEscape="false" maxlength="50" class="form-control required input-xlarge"/>
-						<span class="help-inline"></span>
+					<label class="col-sm-3 control-label"><font color="red">*</font> 名称:</label>
+					<div class="col-sm-9">
+						<form:input path="name" htmlEscape="false" maxlength="50" class="col-xs-10 col-sm-5 required"/>
+						<span class="help-inline col-xs-12 col-sm-7">
+							名称必填${ERR_name }
+						</span>
+					</div>
+				</div>
+				
+				<div class="clearfix form-actions">
+					<div class="col-md-offset-3 col-md-9">
+						<button class="btn btn-info" type="submit">
+							<i class="ace-icon fa fa-check bigger-110"></i>
+							Submit
+						</button>
+
+						&nbsp; &nbsp; &nbsp;
+						<button class="btn" type="reset">
+							<i class="ace-icon fa fa-undo bigger-110"></i>
+							Reset
+						</button>
 					</div>
 				</div>
     		</form:form>

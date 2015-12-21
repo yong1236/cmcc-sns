@@ -26,7 +26,7 @@
                 <i class="glyphicon glyphicon-refresh"></i>
                 刷新
               </a>
-              <a href="${ctxAdmin }/prefecture/group/properties" class="btn btn-primary">添加专区</a>
+              <a href="${ctxAdmin }/prefecture/properties" class="btn btn-primary">添加专区</a>
             </div>
           </div>
         </div>

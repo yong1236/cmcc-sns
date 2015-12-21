@@ -77,6 +77,8 @@ dependencies {
 		"org.springframework:spring-context-support:${springVersion}",
 		'org.springframework.data:spring-data-commons:1.11.1.RELEASE', //spring data core
 		
+		'org.hibernate:hibernate-validator:5.1.2.Final', 	//JSR303 Bean Validator
+		
 		//PERSISTENCE
 		//MyBatis
 		"org.mybatis:mybatis:${mybatisVersion}",

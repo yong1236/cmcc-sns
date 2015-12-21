@@ -7,13 +7,18 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import net.parim.sns.modules.prefecture.entity.Category;
 import net.parim.sns.modules.prefecture.entity.Prefecture;
+import net.parim.sns.modules.prefecture.repository.CategoryRepository;
 import net.parim.sns.modules.prefecture.repository.PrefectureRepository;
 
 @Service
 public class PrefectureService {
 	@Autowired
 	private PrefectureRepository prefectureRepository;
+	
+	@Autowired
+	private CategoryRepository categoryReponsitory;
 	
 	public Prefecture findOne(Long id){
 		return prefectureRepository.findOne(id);
@@ -41,8 +46,9 @@ public class PrefectureService {
 	 * @param size
 	 * @return
 	 */
-	public List<Prefecture> getChoicenessList(int size){
-		return prefectureRepository.getChoicenessList(size);
+	public Page<Prefecture> getChoicenessList(Prefecture prefecture, Pageable pageable){
+		prefecture.setState(net.parim.sns.modules.prefecture.entity.Prefecture.State.EN_APPROVED);
+		return (Page<Prefecture>)prefectureRepository.findAll(prefecture, pageable);
 	}
 	
 	/**
@@ -52,5 +58,9 @@ public class PrefectureService {
 	 */
 	public List<Prefecture> getDepartmentalList(int size){
 		return prefectureRepository.getDepartmentalList(size);
+	}
+	
+	public List<Category> findAllCategory(){
+		return categoryReponsitory.findAll();
 	}
 }

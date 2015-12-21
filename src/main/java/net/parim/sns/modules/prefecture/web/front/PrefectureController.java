@@ -20,7 +20,7 @@ public class PrefectureController {
 	
 	@RequestMapping(value = {"", "/", "/index"}, method = RequestMethod.GET)
 	public String index(Model model){
-		List<Prefecture> choicenessPrefectures = prefectureService.getChoicenessList(6);
+		List<Prefecture> choicenessPrefectures = null ;//= prefectureService.getChoicenessList(new Prefecture(), );
 		List<Prefecture> departmentaPrefectures = prefectureService.getDepartmentalList(6);
 		
 		model.addAttribute("choicenessPrefectures", choicenessPrefectures);
