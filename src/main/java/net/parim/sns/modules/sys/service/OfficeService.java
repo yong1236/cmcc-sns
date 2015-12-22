@@ -20,5 +20,13 @@ public class OfficeService {
 	public List<Office> findChildren(Long parentId){
 		return officeRepository.findByParentId(parentId);
 	}
+	
+	public List<Office> findAll(){
+		return officeRepository.findAll();
+	}
+	
+	public List<Office> findAll(Office office){
+		return officeRepository.findAll(office);
+	}
 
 }

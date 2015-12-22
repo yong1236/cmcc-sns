@@ -11,6 +11,13 @@ public class Office extends BaseEntity {
 	private String type;
 	private Integer grade;
 	private String parentIds;
+	private String remarks;
+	public String getRemarks() {
+		return remarks;
+	}
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
 	private Office parent;
 	private List<Office> chidren;
 	

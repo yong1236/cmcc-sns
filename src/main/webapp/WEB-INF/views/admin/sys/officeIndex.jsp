@@ -9,18 +9,25 @@
 <%@ include file="/WEB-INF/views/include/treeview.jsp" %>
 </head>
 <body>
-<div class="console-container">
-	<div class="row">
-		<div class="col-ms-2">
-			<div id="ztree" class="ztree"></div>
+<div class="console-container" style="height: 100%;">
+	
+	<div class="row"  style="height: 100%;">
+		<div class="col-sm-2"  style="height: 100%;">
+			<div class="panel panel-default"  style="height: 90%; margin-top: 30px;">
+				<div class="panel-heading"><h3 class="panel-title">组织</h3></div>
+				<div class="panel-body">
+					<div id="ztree" class="ztree"></div>
+				</div>
+			</div>
 		</div>
-		<div class="col-ms-10">
+		<div class="col-sm-10" style="height: 100%;">
+			<iframe id="officeContent" src="${ctxAdmin}/sys/office/list?id=&parentIds=" width="100%" height="91%" frameborder="0"></iframe>
 		</div>
 	</div>
 	<script>
-	var setting = {data:{simpleData:{enable:true,idKey:"id",pIdKey:"pId",rootPId:'0'}},
+	var setting = {data:{simpleData:{enable:true,idKey:"id",pIdKey:"pid",rootPId:'0'}},
 		callback:{onClick:function(event, treeId, treeNode){
-				var id = treeNode.pId == '0' ? '' :treeNode.pId;
+				var id = treeNode.pid == '0' ? '' :treeNode.pid;
 				$('#officeContent').attr("src","${ctxAdmin}/sys/office/list?id="+id+"&parentIds="+treeNode.pIds);
 			}
 		}
@@ -28,7 +35,7 @@
 	
 	function refreshTree(){
 		$.getJSON("${ctxAdmin}/sys/office/treeData",function(data){
-			console.log($.fn.zTree);
+			//console.log($.fn.zTree);
 			$.fn.zTree.init($("#ztree"), setting, data).expandAll(true);
 		});
 	}

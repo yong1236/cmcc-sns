@@ -35,6 +35,7 @@
 	
 	<!-- 默认装饰页面, 在需要装饰的页面增加<meta name="decorator" content="default"/> -->
 	<decorator name="blank" page="blank.jsp" />
+	<decorator name="admin-blank" page="admin/blank.jsp" />
 	<!-- <decorator name="default" page="layouts/default.jsp" /> -->
 	
 	<!-- CMS基础主题装饰页面 -->

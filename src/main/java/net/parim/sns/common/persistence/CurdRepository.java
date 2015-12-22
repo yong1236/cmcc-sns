@@ -17,5 +17,7 @@ public interface CurdRepository<T extends BaseEntity> extends BaseRepository<T> 
 	
 	public List<T> findAll();
 	
+	public List<T> findAll(T entity);
+	
 	public List<T> findAll(T entity, Pageable pageable);
 }
