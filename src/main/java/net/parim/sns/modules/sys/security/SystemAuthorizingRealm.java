@@ -51,7 +51,7 @@ public class SystemAuthorizingRealm extends AuthorizingRealm {
 		// 校验用户名密码
 		User user = accountService.findUserByUsername(authcToken.getUsername());
 		if (user != null) {
-			return new SimpleAuthenticationInfo(authcToken.getUsername(), user.getPassword(), getName());
+			return new SimpleAuthenticationInfo(user, user.getPassword(), getName());
 		} else {
 			return null;
 		}
@@ -63,9 +63,9 @@ public class SystemAuthorizingRealm extends AuthorizingRealm {
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(
 			PrincipalCollection paramPrincipalCollection) {
-		String username = (String) getAvailablePrincipal(paramPrincipalCollection);
+		User user = (User) getAvailablePrincipal(paramPrincipalCollection);
 		
-		User user = accountService.findUserByUsername(username);
+		//User user = accountService.findUserByUsername(username);
 		if(user != null){
 			SimpleAuthorizationInfo authInfo = new SimpleAuthorizationInfo();
 			authInfo.addStringPermission("user");
