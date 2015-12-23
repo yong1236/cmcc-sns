@@ -1,0 +1,45 @@
+package net.parim.sns.modules.sys.entity;
+
+import java.util.List;
+
+import net.parim.sns.common.persistence.TreeEntity;
+
+public class UserGroup extends TreeEntity<UserGroup>{
+	private String name;
+	private Boolean isRoot;
+	private Long customThemeId;
+	private Long mobileThemeId;
+	
+	private Site site;
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public Boolean getIsRoot() {
+		return isRoot;
+	}
+	public void setIsRoot(Boolean isRoot) {
+		this.isRoot = isRoot;
+	}
+	public Long getCustomThemeId() {
+		return customThemeId;
+	}
+	public void setCustomThemeId(Long customThemeId) {
+		this.customThemeId = customThemeId;
+	}
+	public Long getMobileThemeId() {
+		return mobileThemeId;
+	}
+	public void setMobileThemeId(Long mobileThemeId) {
+		this.mobileThemeId = mobileThemeId;
+	}
+	public Site getSite() {
+		return site;
+	}
+	public void setSite(Site site) {
+		this.site = site;
+	}
+}

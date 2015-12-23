@@ -1,5 +1,5 @@
 package net.parim.sns.common.persistence;
 
-public interface BaseRepository<T extends BaseEntity> {
+public interface BaseRepository<E extends BaseEntity<?>> {
 
 }
