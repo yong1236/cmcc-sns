@@ -75,7 +75,7 @@ public class SiteController {
 		return "redirect:"+adminPath+"/sys/site/";
 	}
 	
-	@RequestMapping(value="/deleted/{id}")
+	@RequestMapping(value="/delete/{id}")
 	public String delete(@PathVariable Long id, RedirectAttributes redirectAttributes, Model model){
 		siteService.remove(new Site(id));
 		return "redirect:"+adminPath+"/sys/site/";

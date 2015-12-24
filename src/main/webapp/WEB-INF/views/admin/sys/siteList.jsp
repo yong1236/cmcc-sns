@@ -73,11 +73,14 @@
 			<script type="text/template" id="treeTableTpl">
 			<tr id="{{row.id}}" pId="{{pid}}">
 				<td><a href="${ctxAdmin }/sys/site/properties/{{row.id}}">{{row.name}}</a></td>
-				<td>{{row.sortName}}</td>
+				<td>{{row.shortName}}</td>
 				<td>{{row.description}}</td>
 				<td>{{row.createdBy.firstName}}</td>
 				<td>{{row.createDate}}</td>
-				<td class="text-right">修改 ｜ 删除 ｜ 添加子站点</td>
+				<td class="text-right">
+					<a href="${ctxAdmin }/sys/site/properties/{{row.id}}">修改</a> 
+					｜ <a href="${ctxAdmin }/sys/site/delete/{{row.id}}">删除</a>
+					｜ <a href="${ctxAdmin }/sys/site/properties?parent_id={{row.id}}">添加子站点</td>
 			</tr>
 			</script>
     	</div>

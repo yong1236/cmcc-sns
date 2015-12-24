@@ -21,20 +21,20 @@
 			</div>
 		</div>
 		<div class="col-sm-10" style="height: 100%;">
-			<iframe id="officeContent" src="${ctxAdmin}/sys/office/list?id=&parentIds=" width="100%" height="91%" frameborder="0"></iframe>
+			<iframe id="orgContent" src="${ctxAdmin}/sys/org/list?id=&parentIds=" width="100%" height="91%" frameborder="0"></iframe>
 		</div>
 	</div>
 	<script>
 	var setting = {data:{simpleData:{enable:true,idKey:"id",pIdKey:"pid",rootPId:'0'}},
 		callback:{onClick:function(event, treeId, treeNode){
 				var id = treeNode.pid == '0' ? '' :treeNode.pid;
-				$('#officeContent').attr("src","${ctxAdmin}/sys/office/list?id="+id+"&parentIds="+treeNode.pIds);
+				$('#orgContent').attr("src","${ctxAdmin}/sys/org/list?id="+id+"&parentIds="+treeNode.pIds);
 			}
 		}
 	};
 	
 	function refreshTree(){
-		$.getJSON("${ctxAdmin}/sys/office/treeData",function(data){
+		$.getJSON("${ctxAdmin}/sys/org/treeData",function(data){
 			//console.log($.fn.zTree);
 			$.fn.zTree.init($("#ztree"), setting, data).expandAll(true);
 		});

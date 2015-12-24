@@ -42,4 +42,20 @@ public class UserGroup extends TreeEntity<UserGroup>{
 	public void setSite(Site site) {
 		this.site = site;
 	}
+	@Override
+	public UserGroup getParent() {
+		return parent;
+	}
+	@Override
+	public void setParent(UserGroup parent) {
+		this.parent = parent;
+	}
+	@Override
+	public List<UserGroup> getChildren() {
+		return children;
+	}
+	@Override
+	public void setChildren(List<UserGroup> children) {
+		this.children = children;
+	}
 }

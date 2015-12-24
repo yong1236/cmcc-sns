@@ -67,6 +67,13 @@
     			</div>
     			<div class="form-group">
     				<button type="submit" class="btn btn-primary col-sm-offset-3">保存</button>
+    				<c:if test="${not empty site.id }">
+    				<a href="${ctxAdmin }/sys/site/delete/${site.id }" class="btn btn-danger">删除</a>
+    				</c:if>
+    				<c:if test="${empty site.id }">
+    				<button type="button" click="" class="btn btn-info">保存并添加下一条</button>
+    				</c:if>
+    				<a href="${ctxAdmin }/sys/site/list?id=" class="btn btn-default"><i class="glyphicon glyphicon-refresh"></i>取消并返回列表</a>
     			</div>
     		</form:form>
     	</div>

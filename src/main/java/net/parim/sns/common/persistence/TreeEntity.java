@@ -2,9 +2,13 @@ package net.parim.sns.common.persistence;
 
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import net.parim.sns.common.utils.Reflections;
 
-public class TreeEntity<E> extends DataEntity<E> {
+public abstract class TreeEntity<E> extends DataEntity<E> {
 	private static final long serialVersionUID = 8924003950923240082L;
 	
 	protected E parent;
@@ -12,18 +16,23 @@ public class TreeEntity<E> extends DataEntity<E> {
 	protected String name;
 	protected Integer sort;
 	
-	public E getParent() {
-		return parent;
-	}
-	public void setParent(E parent) {
-		this.parent = parent;
-	}
-	public List<E> getChildren() {
-		return children;
-	}
-	public void setChildren(List<E> children) {
-		this.children = children;
-	}
+	/**
+	 * 父对象，只能通过子类实现，父类实现mybatis无法读取
+	 * @return
+	 */
+	@JsonBackReference
+	@NotNull
+	public abstract E getParent();
+
+	/**
+	 * 父对象，只能通过子类实现，父类实现mybatis无法读取
+	 * @return
+	 */
+	public abstract void setParent(E parent);
+	
+	public abstract List<E> getChildren();
+	public abstract void setChildren(List<E> children);
+	
 	public String getName() {
 		return name;
 	}

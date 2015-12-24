@@ -43,4 +43,24 @@ public class Site extends TreeEntity<Site> {
 	public void setTheme(String theme) {
 		this.theme = theme;
 	}
+
+	@Override
+	public Site getParent() {
+		return parent;
+	}
+
+	@Override
+	public void setParent(Site parent) {
+		this.parent = parent;
+	}
+
+	@Override
+	public List<Site> getChildren() {
+		return children;
+	}
+
+	@Override
+	public void setChildren(List<Site> children) {
+		this.children = children;
+	}
 }

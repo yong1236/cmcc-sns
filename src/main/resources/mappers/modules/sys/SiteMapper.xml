@@ -2,9 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="net.parim.sns.modules.sys.repository.SiteRepository">
 	
-	<insert id="insert" parameterType="net.parim.sns.modules.sys.entity.Site">
-		insert into `site` ( `created_by`, `last_update_date`, `theme`, `create_date`, `parent_id`, `short_name`, `description`, `name`, `last_updated_by`) 
-		values ( #{createdBy.id}, now(), #{theme}, now(), #{parent.id}, #{shortName}, #{description}, #{name}, #{lastUpdatedBy.id})
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="net.parim.sns.modules.sys.entity.Site">
+		<selectKey resultType="long" order="BEFORE" keyProperty="id">
+		select nextval('general') as "id"
+		</selectKey>
+		insert into `site` ( `id`, `created_by`, `last_update_date`, `theme`, `create_date`, `parent_id`, `short_name`, `description`, `name`, `last_updated_by`) 
+		values (#{id}, #{createdBy.id}, now(), #{theme}, now(), #{parent.id}, #{shortName}, #{description}, #{name}, #{lastUpdatedBy.id})
 	</insert>
 	
 	<update id="update" parameterType="net.parim.sns.modules.sys.entity.Site">
