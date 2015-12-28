@@ -15,9 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import net.parim.net.common.persistence.Page;
-import net.parim.net.common.service.CrudService;
-import net.parim.net.common.utils.StringUtils;
+import net.parim.sns.common.persistence.Page;
+import net.parim.sns.common.service.CrudService;
+import net.parim.sns.common.utils.StringUtils;
 import ${packageName}.${moduleName}.entity<#if subModuleName != "">.${subModuleName}</#if>.${ClassName};
 import ${packageName}.${moduleName}.dao<#if subModuleName != "">.${subModuleName}</#if>.${ClassName}Dao;
 <#list table.childList as c>

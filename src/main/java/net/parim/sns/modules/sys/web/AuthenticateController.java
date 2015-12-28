@@ -31,4 +31,10 @@ public class AuthenticateController {
 		
 		return Global.getThemePath()+"login";
 	}
+	
+	@RequestMapping(value="/**")
+	@UseTheme(value=false)
+	public String notFound(Model model){
+		return "error/404";
+	}
 }
