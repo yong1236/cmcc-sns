@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import net.parim.sns.modules.sys.entity.Site;
 import net.parim.sns.modules.sys.entity.User;
+import net.parim.sns.modules.sys.entity.UserGroup;
 import net.parim.sns.modules.sys.repository.SiteRepository;
 
 @Service
@@ -14,6 +15,9 @@ public class SiteService {
 	
 	@Autowired
 	private SiteRepository siteRepository;
+	
+	@Autowired
+	private UserGroupService userGroupService;
 	
 	//@CurrrentUser
 	User user =  new User();
@@ -38,7 +42,17 @@ public class SiteService {
 	}
 	
 	public void remove(Site site){
+		removeUserGroups(site);
+		removeChildren(site);
+		
+		//TODO: tree_xref 触发器
 		siteRepository.delete(site);
+	}
+	
+	public void remove(List<Site> sites){
+		for(Site site: sites){
+			remove(site);
+		}
 	}
 	
 	public Site findOne(Long id){
@@ -55,5 +69,15 @@ public class SiteService {
 	
 	public List<Site> findChildren(Site site){
 		return (List<Site>) siteRepository.findAllChildren(site);
+	}
+	
+	public void removeUserGroups(Site site){
+		List<UserGroup> userGroups = userGroupService.findBySite(site);
+		userGroupService.remove(userGroups);
+	}
+	
+	public void removeChildren(Site site){
+		List<Site> children = findChildren(site);
+		remove(children);
 	}
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import net.parim.sns.common.persistence.DataEntity;
 import net.parim.sns.common.persistence.TreeEntity;
 
+
 public class Site extends TreeEntity<Site> {
 	private String name;
 	private String shortName;

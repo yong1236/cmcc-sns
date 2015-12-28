@@ -33,11 +33,20 @@
     	<div class="col-sm-12">
     		<form:form id="inputForm" modelAttribute="org" action="${ctxAdmin }/sys/org/save" method="post" class="form-horizontal">
     			<form:hidden path="id"/>
+    			<c:if test="${not empty site}">
+    			<div class="form-group">
+    				<label class="control-label col-sm-3">所属站点</label>
+    				<div class="col-sm-3 row">
+    					<sys:treeselect id="siteselect" name="site.id" value="${site.id}" labelName="site.name" labelValue="${site.name}"
+							title="站点" url="${ctxAdmin }/sys/site/selectData" extId="${site.id}" cssClass="required"/>
+    				</div>
+    			</div>
+    			</c:if>
     			<div class="form-group">
     				<label class="control-label col-sm-3">上级组织</label>
-    				<div class="col-sm-9 row">
-    					<form:input path="parent.name" class="col-lg-5 col-sm-5"/>
-    					<span class="help-inline col-lg-7 col-sm-7">选择腹肌组织</span>
+    				<div class="col-sm-3 row">
+    					<sys:treeselect id="orgselect" name="parent.id" type="parent.objectType" value="${org.parent.id}" labelName="parent.name" labelValue="${org.parent.name}" isAsync="true"
+							title="站点" url="${ctxAdmin }/sys/userGroupTree/roots" asyncUrl="${ctxAdmin }/sys/userGroupTree/children" extId="${org.id}" cssClass="required"/>
     				</div>
     			</div>
     			<div class="form-group">
@@ -47,20 +56,20 @@
     					<span class="help-inline col-lg-7 col-sm-7"></span>
     				</div>
     			</div>
-    			<div class="form-group">
+    			<%-- <div class="form-group">
     				<label class="control-label col-sm-3">机构编码</label>
     				<div class="col-sm-9 row">
     					<form:input path="code" class="col-lg-5 col-sm-5"/>
     					<span class="help-inline col-lg-7 col-sm-7"></span>
     				</div>
-    			</div>
-    			<div class="form-group">
+    			</div> --%>
+    			<%-- <div class="form-group">
     				<label class="control-label col-sm-3">备注</label>
     				<div class="col-sm-9 row">
     					<form:textarea path="remarks" class="col-sm-7"/>
     					<span class="help-inline col-sm-10"></span>
     				</div>
-    			</div>
+    			</div> --%>
     			<div class="form-group">
     				<button type="submit" class="btn btn-primary col-sm-offset-3">保存</button>
     			</div>

@@ -37,7 +37,7 @@
     				<label class="control-label col-sm-3">上级组织</label>
     				<div class="col-sm-9 row">
     					<form:input path="parent.name" class="col-lg-5 col-sm-5"/>
-    					<span class="help-inline col-lg-7 col-sm-7">选择腹肌组织</span>
+    					<span class="help-inline col-lg-7 col-sm-7">选择上级组织</span>
     				</div>
     			</div>
     			<div class="form-group">

@@ -15,6 +15,7 @@ public abstract class TreeEntity<E> extends DataEntity<E> {
 	protected List<E> children;
 	protected String name;
 	protected Integer sort;
+	protected Long childCount;
 	
 	/**
 	 * 父对象，只能通过子类实现，父类实现mybatis无法读取
@@ -55,5 +56,17 @@ public abstract class TreeEntity<E> extends DataEntity<E> {
 			id = (Long)Reflections.getFieldValue(parent, "id");
 		}
 		return null!=id ? id : 0;
+	}
+
+	public Long getChildCount() {
+		return childCount;
+	}
+
+	public void setChildCount(Long childCount) {
+		this.childCount = childCount;
+	}
+	
+	public Boolean getIsParent(){
+		return getChildCount()!=null && getChildCount()>0;
 	}
 }

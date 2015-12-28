@@ -6,12 +6,27 @@ import net.parim.sns.modules.sys.entity.User;
 
 public class DataEntity<E> extends BaseEntity<E> {
 	private static final long serialVersionUID = 8019120436306066356L;
+	
+	public static final String DEL_FLAG_NORMAL = "0";
+	public static final String DEL_FLAG_DELETE = "1";
 
 	protected User createdBy;
 	protected User lastUpdatedBy;
 	protected Date createDate;
 	protected Date lastUpdateDate;
 	protected Boolean isDeleted;
+	
+	public DataEntity(){
+		
+	}
+	
+	public DataEntity(Long id){
+		super(id);
+	}
+	
+	public DataEntity(String id){
+		super(Long.parseLong(id));
+	}
 	
 	public User getCreatedBy() {
 		return createdBy;

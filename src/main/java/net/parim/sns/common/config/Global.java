@@ -86,4 +86,8 @@ public class Global {
 	public static String getThemePath(){
 		return getThemeBasePath() + getTheme();
 	}
+	
+	public static String getProjectPath(){
+		return getConfig("gen.projectPath");
+	}
 }

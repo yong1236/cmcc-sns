@@ -378,5 +378,13 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
     	result.append(val.substring(1));
     	return result.toString();
     }
+
+	public static boolean isBlank(Long id) {
+		return id == null || id == 0;
+	}
+
+	public static boolean isNotBlank(Long id) {
+		return id!=null && id>0;
+	}
     
 }

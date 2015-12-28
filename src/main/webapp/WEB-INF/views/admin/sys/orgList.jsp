@@ -20,7 +20,7 @@
 			for (var i=0; i<data.length; i++){
 				var row = data[i];
 				//if (($~{fns:jsGetVal('row.parentId')}) == pid){
-				if(row.parent.id == pid){
+				if(row.parentId == pid){
 					$(list).append(Mustache.render(tpl, {
 						dict: {
 							type: '--'//getDictLabel($~{fns:toJson(fns:getDictList('sys_org_type'))}, row.type)

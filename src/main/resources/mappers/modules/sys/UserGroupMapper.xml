@@ -33,7 +33,8 @@
 	
 	
 	<select id="findOne" parameterType="long" resultType="net.parim.sns.modules.sys.entity.UserGroup">
-		select g.`parent_id` as "parent.id", 
+		select g.id as "id",
+			g.`parent_id` as "parent.id", 
 			g.`site_id` as "site.id", 
 			g.`name`, 
 			g.`is_root`, 

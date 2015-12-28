@@ -5,17 +5,22 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.common.collect.Lists;
 import com.sun.xml.internal.fastinfoset.sax.Properties;
 
+import net.parim.sns.modules.sys.entity.PermissionTarget;
+import net.parim.sns.modules.sys.entity.Site;
 import net.parim.sns.modules.sys.entity.UserGroup;
+import net.parim.sns.modules.sys.entity.PermissionTarget.ObjectType;
 import net.parim.sns.modules.sys.service.UserGroupService;;
 
 @Controller
@@ -23,6 +28,9 @@ import net.parim.sns.modules.sys.service.UserGroupService;;
 public class OrgController {
 	@Autowired
 	UserGroupService userGroupService;
+	
+	@Value(value="${adminPath}")
+	private String adminPath;
 	
 	@RequestMapping(value="/")
 	public String index() {
@@ -39,9 +47,31 @@ public class OrgController {
 	
 	@RequestMapping(value="/properties")
 	public String properties(Model model){
-		model.addAttribute(new UserGroup());
+		model.addAttribute("org",new UserGroup());
 		
 		return "admin/sys/orgProperties";
+	}
+	
+	@RequestMapping(value="/save")
+	public String save(PermissionTarget permissionTarget, UserGroup userGroup,
+				RedirectAttributes redirectAttributes, Model model){
+		if(permissionTarget.getParent().getObjectType()!=null 
+				&& permissionTarget.getParent().getObjectType()== ObjectType.S){
+			Site site = new Site();
+			site.setId(permissionTarget.getParent().getId());
+			userGroup.setParent(null);
+			userGroup.setSite(site);
+		}
+		if(permissionTarget.getParent().getObjectType()!=null 
+				&& permissionTarget.getParent().getObjectType()== ObjectType.O){
+			UserGroup parent = new UserGroup();
+			parent.setId(permissionTarget.getParent().getId());
+			userGroup.setParent(parent);
+		}
+		
+		userGroupService.save(userGroup);
+		
+		return "redirect:"+adminPath+"/sys/org/list";
 	}
 	
 	

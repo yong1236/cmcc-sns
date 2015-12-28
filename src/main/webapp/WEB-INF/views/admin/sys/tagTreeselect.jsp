@@ -6,10 +6,12 @@
 	<meta name="decorator" content="blank"/>
 	<%@include file="/WEB-INF/views/include/treeview.jsp" %>
 	<script type="text/javascript">
-		var key, lastValue = "", nodeList = [], type = getQueryString("type", "${url}");
+		var key, lastValue = "", nodeList = [], type = getQueryString("type", "${url}"), isAsync='${isAsync}'=='true',
+				simpleData='${simpleData}'=='true',
+				asyncUrl='${empty asyncUrl?url:asyncUrl}';
 		var tree, setting = {view:{selectedMulti:false,dblClickExpand:false},check:{enable:"${checked}",nocheckInherit:true},
-				async:{enable:(type==3),url:"${ctxAdmin }/sys/user/treeData",autoParam:["id=officeId"]},
-				data:{simpleData:{enable:true}},callback:{<%--
+				async:{enable:isAsync, url:asyncUrl,autoParam:["id","type"]},
+				data:{simpleData:{enable:simpleData}},callback:{<%--
 					beforeClick: function(treeId, treeNode){
 						if("${checked}" == "true"){
 							//tree.checkNode(treeNode, !node.checked, true, true);

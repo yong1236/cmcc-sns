@@ -14,9 +14,12 @@
 		update `site` set `last_update_date`=now(), `theme`=#{theme}, `parent_id`=#{parent.id}, `short_name`=#{shortName}, `description`=#{description}, `name`=#{name}, `last_updated_by`=#{lastUpdatedBy.id} where `id`=#{id}
 	</update>
 	
-	<update id="delete" parameterType="long">
+	<!-- <update id="delete" parameterType="long">
 		update site set is_deleted=1 where id=#{id} and id&lt;&gt;1
-	</update>
+	</update> -->
+	<delete id="delete" parameterType="long">
+		delete from site where id=#{id} and id&lt;&gt;1
+	</delete>
 	
 	<select id="findOne" parameterType="long" resultType="net.parim.sns.modules.sys.entity.Site">
 		select s.`created_by` as "createdBy.id", 

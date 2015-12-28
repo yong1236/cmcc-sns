@@ -25,18 +25,26 @@
 		</div>
 	</div>
 	<script>
-	var setting = {data:{simpleData:{enable:true,idKey:"id",pIdKey:"pid",rootPId:'0'}},
-		callback:{onClick:function(event, treeId, treeNode){
-				var id = treeNode.pid == '0' ? '' :treeNode.pid;
-				$('#orgContent').attr("src","${ctxAdmin}/sys/org/list?id="+id+"&parentIds="+treeNode.pIds);
+	var setting = {
+			async: {
+				enable: true,
+				autoParam: ['id'],
+				url: "${ctxAdmin}/sys/userGroupTree/children"
+			},
+			data:{simpleData:{enable:false,idKey:"id",pIdKey:"pid",rootPId:'0'}},
+			callback:{onClick:function(event, treeId, treeNode){
+					var id = treeNode.id == '0' ? '' :treeNode.id;
+					$('#orgContent').attr("src","${ctxAdmin}/sys/org/list?id="+id+"&parentIds="+treeNode.pIds);
+				}
 			}
-		}
-	};
+		};
 	
 	function refreshTree(){
-		$.getJSON("${ctxAdmin}/sys/org/treeData",function(data){
-			//console.log($.fn.zTree);
-			$.fn.zTree.init($("#ztree"), setting, data).expandAll(true);
+		$.getJSON("${ctxAdmin}/sys/userGroupTree/roots",function(data){
+			console.log(data);
+			var orgTree = $.fn.zTree.init($("#ztree"), setting, data);
+			//orgTree.expandAll(true);
+			orgTree.expandNode(orgTree.getNodes()[0]);
 		});
 	}
 	refreshTree();

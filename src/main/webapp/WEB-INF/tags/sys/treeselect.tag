@@ -1,12 +1,16 @@
 <%@ tag language="java" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <%@ attribute name="id" type="java.lang.String" required="true" description="编号"%>
+<%@ attribute name="type" type="java.lang.String" required="false" description="类型"%>
 <%@ attribute name="name" type="java.lang.String" required="true" description="隐藏域名称（ID）"%>
 <%@ attribute name="value" type="java.lang.String" required="true" description="隐藏域值（ID）"%>
 <%@ attribute name="labelName" type="java.lang.String" required="true" description="输入框名称（Name）"%>
 <%@ attribute name="labelValue" type="java.lang.String" required="true" description="输入框值（Name）"%>
 <%@ attribute name="title" type="java.lang.String" required="true" description="选择框标题"%>
 <%@ attribute name="url" type="java.lang.String" required="true" description="树结构数据地址"%>
+<%@ attribute name="isAsync" type="java.lang.String" required="false" description="是否异步加载"%>
+<%@ attribute name="asyncUrl" type="java.lang.String" required="false"  description="异步加载地址"%>
+<%@ attribute name="simpleData" type="java.lang.String" required="false" description="是否异步加载"%>
 <%@ attribute name="checked" type="java.lang.Boolean" required="false" description="是否显示复选框，如果不需要返回父节点，请设置notAllowSelectParent为true"%>
 <%@ attribute name="extId" type="java.lang.String" required="false" description="排除掉的编号（不能选择的编号）"%>
 <%@ attribute name="isAll" type="java.lang.Boolean" required="false" description="是否列出全部数据，设置true则不进行数据权限过滤（目前仅对Office有效）"%>
@@ -24,6 +28,7 @@
 <%@ attribute name="dataMsgRequired" type="java.lang.String" required="false" description=""%>
 <div class="input-group">
 	<input id="${id}Id" name="${name}" class="${cssClass}" type="hidden" value="${value}"/>
+	<input id="${id}Type" name="${type }" class="${cssClass}" type="hidden" value="${value}"/>
 	<input id="${id}Name" name="${labelName}" ${allowInput?'':'readonly="readonly"'} type="text" value="${labelValue}" data-msg-required="${dataMsgRequired}"
 		class="form-control ${cssClass}" style="${cssStyle}"/>
 		<a id="${id}Button" href="javascript:void(0)" class="input-group-addon ${disabled} ${hideBtn ? 'hide' : ''}" >
@@ -37,11 +42,11 @@
 			return true;
 		}
 		// 正常打开	
-		top.$.jBox.open("iframe:${ctxAdmin}/tag/treeselect?url="+encodeURIComponent("${url}")+"&module=${module}&checked=${checked}&extId=${extId}&isAll=${isAll}", "选择${title}", 300, 420, {
+		top.$.jBox.open("iframe:${ctxAdmin}/tag/treeselect?url="+encodeURIComponent("${url}")+"&asyncUrl="+encodeURIComponent("${asyncUrl}")+"&isAsync=${isAsync}&simpleData=${simpleData}&module=${module}&checked=${checked}&extId=${extId}&isAll=${isAll}", "选择${title}", 300, 420, {
 			ajaxData:{selectIds: $("#${id}Id").val()},buttons:{"确定":"ok", ${allowClear?"\"清除\":\"clear\", ":""}"关闭":true}, submit:function(v, h, f){
 				if (v=="ok"){
 					var tree = h.find("iframe")[0].contentWindow.tree;//h.find("iframe").contents();
-					var ids = [], names = [], nodes = [];
+					var ids = [], names = [], nodes = [], types = [];
 					if ("${checked}" == "true"){
 						nodes = tree.getCheckedNodes(true);
 					}else{
@@ -68,10 +73,12 @@
 						}//</c:if>
 						ids.push(nodes[i].id);
 						names.push(nodes[i].name);//<c:if test="${!checked}">
+						types.push(nodes[i].objectType?nodes[i].objectType:"");
 						break; // 如果为非复选框选择，则返回第一个选择  </c:if>
 					}
 					$("#${id}Id").val(ids.join(",").replace(/u_/ig,""));
 					$("#${id}Name").val(names.join(","));
+					$("#${id}Type").val(types.join(","));
 				}//<c:if test="${allowClear}">
 				else if (v=="clear"){
 					$("#${id}Id").val("");
