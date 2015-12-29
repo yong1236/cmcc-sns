@@ -201,7 +201,7 @@ eclipse {
 
 
 jettyRun{  
-    webAppSourceDirectory file("$projectDir/WebRoot/")  
+    webAppSourceDirectory file("$projectDir/src/main/webapp/")  
     httpPort 8080
     contextPath project.name
     scanIntervalSeconds 0  

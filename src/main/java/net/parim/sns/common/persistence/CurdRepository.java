@@ -2,7 +2,6 @@ package net.parim.sns.common.persistence;
 
 import java.util.List;
 
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface CurdRepository<E extends BaseEntity<?>> extends BaseRepository<E> {

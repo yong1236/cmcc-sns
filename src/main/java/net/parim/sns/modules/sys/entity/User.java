@@ -4,7 +4,7 @@ import java.util.Date;
 
 import net.parim.sns.common.persistence.DataEntity;
 
-public class User extends DataEntity {
+public class User extends DataEntity<User> {
 	
 	private String username;
 	private String password;

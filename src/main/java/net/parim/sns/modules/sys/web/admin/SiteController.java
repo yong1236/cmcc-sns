@@ -5,6 +5,9 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
+import net.parim.sns.modules.sys.entity.Site;
+import net.parim.sns.modules.sys.service.SiteService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -18,11 +21,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-
-import net.parim.sns.common.utils.StringUtils;
-import net.parim.sns.modules.sys.entity.Menu;
-import net.parim.sns.modules.sys.entity.Site;
-import net.parim.sns.modules.sys.service.SiteService;
 
 @Controller
 @RequestMapping(value="${adminPath}/sys/site")

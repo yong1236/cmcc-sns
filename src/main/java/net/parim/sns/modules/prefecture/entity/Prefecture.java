@@ -7,7 +7,7 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import net.parim.sns.common.persistence.BaseEntity;
 
-public class Prefecture extends BaseEntity {
+public class Prefecture extends BaseEntity<Prefecture> {
 	@NotBlank(message="{prefecture.name.not.blank}")
 	private String name;
 	@Length(min=10, max= 1000, message="{prefecture.intro.length.between}")

@@ -7,6 +7,7 @@ import net.parim.sns.common.persistence.mybatis.paginate.domain.PageImpl;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,15 +21,15 @@ public class PageListAttrHandlerInterceptor extends HandlerInterceptorAdapter {
         return true;
     }
 
-    public void postHandle(HttpServletRequest request, HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView) throws Exception {
-        Enumeration enumeration = request.getAttributeNames();
+	public void postHandle(HttpServletRequest request, HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView) throws Exception {
+        Enumeration<?> enumeration = request.getAttributeNames();
         while (enumeration.hasMoreElements()){
             Object element = enumeration.nextElement();
             if(element instanceof String){
                 String name = (String)element;
                 Object attr = request.getAttribute(name);
                 if(attr instanceof PageImpl){
-                	PageImpl pageList = (PageImpl)attr;
+                	PageImpl<?> pageList = (PageImpl<?>)attr;
                     //原属性加后缀
                     request.setAttribute(name, new org.springframework.data.domain.PageImpl(pageList.getContent(), pageList.getPageable(), pageList.getTotal()));
                 }
@@ -40,7 +41,7 @@ public class PageListAttrHandlerInterceptor extends HandlerInterceptorAdapter {
             for(Map.Entry<String, Object> item : model.entrySet()){
                 Object attr = item.getValue();
                 if(attr instanceof PageImpl){
-                	PageImpl pageList = (PageImpl)attr;
+                	PageImpl<?> pageList = (PageImpl<?>)attr;
                     //原属性加后缀
                     newModel.put(item.getKey(), new org.springframework.data.domain.PageImpl(pageList.getContent(), pageList.getPageable(), pageList.getTotal()));
                 }

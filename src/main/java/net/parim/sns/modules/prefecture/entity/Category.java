@@ -4,7 +4,7 @@ import java.util.List;
 
 import net.parim.sns.common.persistence.BaseEntity;
 
-public class Category extends BaseEntity {
+public class Category extends BaseEntity<Category> {
 	private String name;
 	private Category parent;
 	private List<Category> children;

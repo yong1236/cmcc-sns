@@ -4,7 +4,7 @@ import java.util.List;
 
 import net.parim.sns.common.persistence.BaseEntity;
 
-public class Office extends BaseEntity {
+public class Office extends BaseEntity<Office> {
 	private String name;
 	private Integer sort;
 	private String code;

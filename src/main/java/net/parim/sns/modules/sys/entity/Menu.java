@@ -2,7 +2,7 @@ package net.parim.sns.modules.sys.entity;
 
 import net.parim.sns.common.persistence.BaseEntity;
 
-public class Menu extends BaseEntity {
+public class Menu extends BaseEntity<Menu> {
 	private Menu parent;
 	private String parentIds;
 	private String name;
